@@ -8,8 +8,8 @@ import { AuthFormComponent } from './auth-form/auth-form.component';
   template: `
     <div>
       <div #entry></div>
-      <template #tmpl>
-        Daryl Occ : Westminster, CA
+      <template #tmpl let-name let-location="location">
+        {{ name }} : {{ location }}
       </template>
     </div>
   `
@@ -26,7 +26,10 @@ export class AppComponent implements AfterContentInit{
   }
 
   ngAfterContentInit() {
-    this.entry.createEmbeddedView(this.tmpl);
+    this.entry.createEmbeddedView(this.tmpl, {
+      $implicit: 'Kevin Occ'
+      location: 'Westminster, CA'
+    });
   }
 
   loginUser(user: User) {
