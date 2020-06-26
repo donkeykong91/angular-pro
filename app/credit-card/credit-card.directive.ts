@@ -4,7 +4,8 @@ import { Directive, HostListener, HostBinding, ElementRef } from '@angular/core'
   selector: '[credit-card]'
 })
 export class CreditCardDirective {
-  @HostBinding('style.border')
+
+  @HostBinding('class.border')
   border: string;
 
   @HostListener('input', ['$event'])
@@ -24,7 +25,9 @@ export class CreditCardDirective {
     input.value = numbers.join(' ');
 
     this.border = '';
-    if (/[^\d]+/.test(trimmed))
+    if (/[^\d]+/.test(trimmed)) {
       this.border = '1px solid red';
+    }
+
   }
 }
