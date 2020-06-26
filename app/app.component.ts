@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
         Credit Card Number
         <input 
           name="credit-card" 
+          value="foo"
           type="text"
           placeholder="Enter your 16-digit card number"
           credit-card>
