@@ -85,7 +85,7 @@ app-root {
   border-radius: 2px;
   border: 1px solid #dce5f2;
   box-shadow: 0 1px 4px rgba(53,60,72,0.1);
-  padding: 30px 0;
+  padding: 20px 30px;
 }
 app-root > div {
   display: flex;
@@ -94,17 +94,15 @@ form {
   flex: 1 0;
   padding: 0 40px;
 }
-auth-form:first-child form {
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
-}
-input {
+input[type="text"] {
   display: block;
   border: none;
   background: #ffffff;
-  font-size: 13px;
+  font-size: 15px;
   padding: 6px 30px 6px 10px;
   border-radius: 1px;
   border: 1px solid #eeeeee;
+  margin-top: 10px;
 }
 label {
   margin-bottom: 20px;

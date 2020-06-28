@@ -1,41 +1,39 @@
-import { Component, ViewContainerRef, ViewChild, ComponentFactoryResolver, AfterContentInit, ComponentRef } from '@angular/core';
-
-import { User } from './auth-form/auth-form.interface';
-import { AuthFormComponent } from './auth-form/auth-form.component';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   template: `
     <div>
-      <button (click)="destroyComponent()">
-        Destroy
-      </button>
-      <div #entry></div>
+      <ul>
+        <li *myFor="let item of items; let i = index;">
+          {{ i }} Member: {{ item.name | json }}
+        </li>
+        <template myFor [myForOf]="items" let-item let-i="index">
+          <li>
+            {{ i }} Member: {{ item.name | json }}
+          </li>
+        </template>
+      </ul>
     </div>
   `
 })
-export class AppComponent implements AfterContentInit{
-
-  @ViewChild('entry', { read: ViewContainerRef }) entry: ViewContainerRef;
-
-  component: ComponentRef<AuthFormComponent>;
-
-  constructor(private resolver: ComponentFactoryResolver) {
-
-  }
-
-  ngAfterContentInit() {
-    const authFormFactory = this.resolver.resolveComponentFactory(AuthFormComponent);
-    this.component = this.entry.createComponent(authFormFactory);
-    this.component.instance.title = 'Create account';
-    this.component.instance.submitted.subscribe(this.loginUser);
-  }
-
-  loginUser(user: User) {
-    console.log('Login', user);
-  }
-
-  destroyComponent () {
-    this.component.destroy();
+export class AppComponent {
+  items = [{
+    name: 'Mark Hoppus',
+    age: 44,
+    location: 'California'
+  },{
+    name: 'Tom Delonge',
+    age: 41,
+    location: 'California'
+  },{
+    name: 'Travis Barker',
+    age: 41,
+    location: 'California'
+  }];
+  constructor() {
+    setTimeout(() => {
+      this.items = [...this.items, { name: 'Matt Skiba', age: 40, location: 'California' }];
+    }, 2000);
   }
 }
